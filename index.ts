@@ -1,5 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import morgan from 'morgan';
+
 
 
 // Routes files
@@ -9,6 +11,12 @@ import products from './routes/products';
 dotenv.config({path: './config/config.env'});
 
 const app = express();
+
+
+// Dev logging middleware
+if(process.env.NODE_ENV === 'development'){
+    app.use(morgan('dev'));
+}
 
 
 
