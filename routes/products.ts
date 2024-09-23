@@ -1,25 +1,21 @@
 import express from 'express';
 
+import {
+    getProducts,
+    getProduct,
+    createProduct,
+    updateProduct,
+    deleteProduct
+   
+} from '../controllers/products';
+
+
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    res.status(200).json({ success: true, message: 'Show all products' });
-});
+router.route('/').get(getProducts).post(createProduct);
 
-router.get('/:id', (req, res) => {
-    res.status(200).json({ success: true, message: `Show product ${req.params.id}` });
-});
+router.route('/:id').get(getProduct).put(updateProduct).delete(deleteProduct);
 
-router.post('/', (req, res) => {
-    res.status(200).json({ success: true, message: 'Create new product' });
-});
 
-router.put('/:id', (req, res) => {
-    res.status(200).json({ success: true, message: `Update product ${req.params.id}` });
-});
-
-router.delete('/:id', (req, res) => {
-    res.status(200).json({ success: true, message: `Delete product ${req.params.id}` });
-});
 
 export default router;
